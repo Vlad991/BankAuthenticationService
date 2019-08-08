@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @AllArgsConstructor
 @ConfigurationProperties(prefix = "keycloak")  // reads settings from file
 public class KeycloakServerProperties {
-    private String appRealm;
+    private String appRealm;                  // settings are in file (names must be equal)
     private String idmBrokerAuthUrl;
     private String idmBrokerApp;
     private KeycloakServer server;
