@@ -5,9 +5,13 @@ import com.mybank.configuration.KeycloakServerProperties;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
 
+@Component
+@Qualifier("broker")
 public class KeycloakConnectionImpl implements KeycloakConnection {
     private KeycloakServerProperties properties;
     private static volatile Keycloak INSTANCE;
