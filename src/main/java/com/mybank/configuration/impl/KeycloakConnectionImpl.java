@@ -26,7 +26,7 @@ public class KeycloakConnectionImpl implements KeycloakConnection {
             synchronized (KeycloakConnectionImpl.class) {  // not to be two connection instances created
                 INSTANCE = KeycloakBuilder.builder()
                         .serverUrl(properties.getIdmBrokerAuthUrl())
-                        .realm("master")  // todo ?????
+                        .realm("master")
                         .grantType(OAuth2Constants.PASSWORD)
                         .clientId(properties.getIdmBrokerApp())
                         .username(properties.getServer().getAdminUser().getUsername()) // name and password to connect to keycloak

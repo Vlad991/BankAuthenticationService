@@ -2,9 +2,9 @@ spring:
   datasource:
     username: kzm_vlad
     password: 123root@
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     driverDialect: org.hibernate.dialect.MySQLDialect
-    url: jdbc:mysql://localhost:3306/bankdb_2?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/bankauthdb?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC
     hikari:
       minimum-idle: 1
       maximum-pool-size: 400

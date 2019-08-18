@@ -38,32 +38,32 @@ public class CreditCardService {
         userRepresentation.setEnabled(true);                 // user is active, that means we can get token on his name
         userRepresentation.setUsername(creditCardDTO.getNumber());
 
-        keycloakConnection.getKeycloakClient().realm("bank").users().create(userRepresentation); // REST request
-        UsersResource usersResource = keycloakConnection.getKeycloakClient().realm("bank").users();
+        keycloakConnection.getKeycloakClient().realm("credit-card").users().create(userRepresentation); // REST request
+        UsersResource usersResource = keycloakConnection.getKeycloakClient().realm("credit-card").users();
         List<UserRepresentation> userRepresentationList = usersResource.list(); // getting all users to create password
         Optional<UserRepresentation> user = userRepresentationList.stream()
                 .filter(userRep -> userRep.getUsername().equals(creditCardDTO.getNumber()))
                 .findFirst();
         CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
         credentialRepresentation.setTemporary(false);
-        credentialRepresentation.setType("pin");
+        credentialRepresentation.setType("password");
         credentialRepresentation.setValue(String.valueOf(creditCardDTO.getPin()));
 
         user.ifPresent(u -> {
             keycloakConnection.getKeycloakClient()
-                    .realm("bank")
+                    .realm("credit-card")
                     .users()
                     .get(u.getId())
                     .resetPassword(credentialRepresentation);
 
-            ClientRepresentation clientRepresentation = keycloakConnection.getKeycloakClient().realm("bank")
+            ClientRepresentation clientRepresentation = keycloakConnection.getKeycloakClient().realm("credit-card")
                     .clients()
                     .findAll()
                     .stream()
-                    .filter(client -> client.getClientId().equals("BankWebProjectSpringBoot"))
+                    .filter(client -> client.getClientId().equals("app-broker"))
                     .findFirst().get();
 
-            List<RoleRepresentation> roleRepresentations = keycloakConnection.getKeycloakClient().realm("bank")
+            List<RoleRepresentation> roleRepresentations = keycloakConnection.getKeycloakClient().realm("credit-card")
                     .users().get(u.getId()).roles().clientLevel(clientRepresentation.getId()).listAll();
 
             RoleRepresentation role = roleRepresentations.stream()
@@ -71,7 +71,7 @@ public class CreditCardService {
                     .findFirst().get();
 
             keycloakConnection.getKeycloakClient()
-                    .realm("bank")
+                    .realm("credit-card")
                     .users().get(u.getId())
                     .roles().clientLevel(clientRepresentation.getId())
                     .add(Arrays.asList(role));
