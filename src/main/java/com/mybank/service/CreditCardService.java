@@ -3,7 +3,6 @@ package com.mybank.service;
 import com.mybank.configuration.KeycloakConnection;
 import com.mybank.exception.ValidationException;
 import com.mybank.messaging.dto.CreditCardDTO;
-import com.mybank.messaging.dto.UserDTO;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
@@ -60,7 +59,7 @@ public class CreditCardService {
                     .clients()
                     .findAll()
                     .stream()
-                    .filter(client -> client.getClientId().equals("app-broker"))
+                    .filter(client -> client.getClientId().equals("card-web"))
                     .findFirst().get();
 
             List<RoleRepresentation> roleRepresentations = keycloakConnection.getKeycloakClient().realm("credit-card")

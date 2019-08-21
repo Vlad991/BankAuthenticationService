@@ -59,11 +59,11 @@ public class UserService {
                     .clients()
                     .findAll()
                     .stream()
-                    .filter(client -> client.getClientId().equals("app-broker"))
+                    .filter(client -> client.getClientId().equals("bank-web"))
                     .findFirst().get();
 
             List<RoleRepresentation> roleRepresentations = keycloakConnection.getKeycloakClient().realm("bank")
-                    .users().get(u.getId()).roles().clientLevel(clientRepresentation.getId()).listAll();
+                    .users().get(u.getId()).roles().clientLevel(clientRepresentation.getId()).listAvailable();
 
             RoleRepresentation role = roleRepresentations.stream()
                     .filter(roleRep -> roleRep.getName().equals("ROLE_CLIENT"))

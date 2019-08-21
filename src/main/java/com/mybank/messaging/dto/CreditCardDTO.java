@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Setter
 @Getter
@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreditCardDTO {
     @NotNull(message = "Number is required")
-    @CreditCardNumber(ignoreNonDigitCharacters = true)
+//    @CreditCardNumber(ignoreNonDigitCharacters = true)
     private String number;   // todo card number
 
     @NotNull(message = "Date is required")
@@ -25,7 +25,7 @@ public class CreditCardDTO {
     private UserDTO client;
 
     @NotNull(message = "Code is required")
-    @Size(min = 000, max = 999, message = "Code must be XXX")
+    @Max(999)
     private int code;
 
     private int sum;
