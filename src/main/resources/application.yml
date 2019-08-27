@@ -9,7 +9,6 @@ spring:
       minimum-idle: 1
       maximum-pool-size: 400
 
-
   cloud:
     stream:
       kafka:
