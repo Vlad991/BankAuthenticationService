@@ -26,7 +26,7 @@ spring:
             headerMode: raw
         card-event-input:
           destination: card-event
-          contentType: applicatio/json
+          contentType: application/json
           consumer:
             headerMode: raw
 
@@ -46,3 +46,7 @@ keycloak:
     adminUser:
       username: admin
       password: 123root@
+
+logging:
+  level:
+    root: INFO
