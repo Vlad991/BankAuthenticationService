@@ -4,7 +4,7 @@ spring:
     password: 123root@
     driverClassName: com.mysql.cj.jdbc.Driver
     driverDialect: org.hibernate.dialect.MySQLDialect
-    url: jdbc:mysql://localhost:3306/bankauthdb
+    url: jdbc:mysql://localhost:3306/bankauthdb?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC
     hikari:
       minimum-idle: 1
       maximum-pool-size: 400
@@ -13,15 +13,8 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: pkc-43n10.us-central1.gcp.confluent.cloud:9092
-          auto-create-topics: true
-          replication-factor: 3
-          configuration:
-            sasl.mechanism: PLAIN
-            request.timeout.ms: 20000
-            retry.backoff.ms: 500
-            sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="FPSKPK5FCNCRI4MG" password="WeyTVtrpB3JFj/6Zaps3EZg+8EV2r3mdvKe1ULtfNQxttpgC/QIp5uRkk7kbUwZP";
-            security.protocol: SASL_SSL
+          zkNodes: localhost
+          brokers: localhost
       bindings:
         kafka:
           binder:
@@ -37,11 +30,10 @@ spring:
           consumer:
             headerMode: raw
 
-  main:
-    allow-bean-definition-overriding: true
-
 server:
   port: 8080
+  servlet:
+    context-path: localhost
 
 resteasy:
   deployment:

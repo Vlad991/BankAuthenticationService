@@ -31,7 +31,7 @@ public class AuthApplication {
             }
             String keycloakContextPath = keycloakServerProperties.getServer().getContextPath();
 
-            System.out.printf("Embedded Keycloak started: http://localhost:%s%s%s to use keycloak%n",
+            System.out.printf("Embedded Keycloak started: http://someHost:%s%s%s to use keycloak%n",
                     port,
                     rootContextPath,
                     keycloakContextPath);

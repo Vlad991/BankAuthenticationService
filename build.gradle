@@ -51,7 +51,6 @@ dependencies {
     // Spring Boot
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-web'
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile 'org.springframework.integration:spring-integration-core'
     compile 'org.springframework.cloud:spring-cloud-stream'
